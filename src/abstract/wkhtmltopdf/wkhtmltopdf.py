@@ -12,13 +12,12 @@ class PDFRenderer(object):
         config = queryUtility(IWkhtmltopdfConfig)
         self.logger = logging.getLogger("whkthmltopdf")
         if not config:
-            self.logger.error('IWkhtmltopdfConfig utility not found')
-            raise Exception('Cazzzo!!!')
+            error_str = 'IWkhtmltopdfConfig utility not found'
+            self.logger.error(error_str)
 
         self.executable = config().paths.get(sys.platform)
         if not self.executable:
             self.logger.error('Wkhtmltopdf executable not found')
-            raise Exception('ri Cazzzo!!!')
 
     def __call__(self, data):
         if isinstance(data, unicode):
