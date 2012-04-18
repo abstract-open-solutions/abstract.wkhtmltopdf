@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import sys
 import subprocess
 import logging
@@ -37,7 +38,7 @@ class PDFRenderer(object):
         logging.debug(log_str)
         stdout, stderr = process.communicate(data)
         if process.returncode != 0:
-            log_str = "wkhtmltopdf failed (%d): %s" % \
+            error = "wkhtmltopdf failed (%d): %s" % \
                                     (process.returncode, stderr)
-            logging.error(log_str)
+            raise RuntimeError(error)
         return stdout
