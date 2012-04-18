@@ -1,23 +1,25 @@
 import sys
 import subprocess
 import logging
-from zope.component import queryUtility
+from zope.component import getUtility
 from interfaces import IWkhtmltopdfConfig
-# from App.config import getConfiguration
+
+
+class ConfigurationError(Exception):
+    """Whkthmltopdf configuration error
+    """
 
 
 class PDFRenderer(object):
 
     def __init__(self):
-        config = queryUtility(IWkhtmltopdfConfig)
+        config = getUtility(IWkhtmltopdfConfig)
         self.logger = logging.getLogger("whkthmltopdf")
-        if not config:
-            error_str = 'IWkhtmltopdfConfig utility not found'
-            self.logger.error(error_str)
 
         self.executable = config().paths.get(sys.platform)
         if not self.executable:
-            self.logger.error('Wkhtmltopdf executable not found')
+            error = 'Wkhtmltopdf executable not found for this platform'
+            raise ConfigurationError(error)
 
     def __call__(self, data):
         if isinstance(data, unicode):
