@@ -17,7 +17,7 @@ class PDFRenderer(object):
         config = getUtility(IWkhtmltopdfConfig)
         self.logger = logging.getLogger("whkthmltopdf")
 
-        self.executable = config().paths.get(sys.platform)
+        self.executable = config.paths.get(sys.platform)
         if not self.executable:
             error = 'Wkhtmltopdf executable not found for this platform'
             raise ConfigurationError(error)
