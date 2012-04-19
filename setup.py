@@ -33,11 +33,15 @@ setup(name='abstract.wkhtmltopdf',
       namespace_packages=['abstract'],
       include_package_data=True,
       zip_safe=False,
+      test_suite="abstract.wkhtmltopdf",
       install_requires=[
           'setuptools',
           'zope.component',
           'zope.interface',
           # -*- Extra requirements: -*-
+      ],
+      tests_require = [
+        'mock',
       ],
       entry_points="""
       # -*- Entry points: -*-
