@@ -19,10 +19,13 @@ Configuration
     ...               'darwin': '/absolute/path/to/osx/wkhtmltopdf'}
 
 
+zcml example registration::
+
     <utility
         provides="abstract.wkhtmltopdf.interfaces.IWkhtmltopdfConfig"
         factory=".WkhtmltopdfConfig"
       />
+
 
 
 Zope/Plone integration
@@ -65,6 +68,8 @@ Pyramid integration
 
 install kwhtmltopdf with zc.buildout
 ====================================
+
+buildout example configuration ::
 
     [buildout]
     ...
