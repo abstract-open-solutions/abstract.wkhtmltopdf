@@ -62,3 +62,24 @@ Pyramid integration
     ...
     ...     return response
 
+
+install kwhtmltopdf with zc.buildout
+====================================
+
+    [buildout]
+    ...
+    parts =
+        ...
+        wkhtmltopdf-linux
+        wkhtmltopdf-osx
+
+    ...
+
+    [wkhtmltopdf-linux]
+    recipe = hexagonit.recipe.download
+    url = http://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-0.10.0_rc2-static-i386.tar.bz2
+
+    [wkhtmltopdf-osx]
+    recipe = hexagonit.recipe.download
+    url = http://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-OSX-0.10.0_rc2-static.tar.bz2
+
