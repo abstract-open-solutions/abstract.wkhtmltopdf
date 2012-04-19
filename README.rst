@@ -7,8 +7,22 @@ This package provides a class to use wkhtmltopdf in python without any trouble (
 
 USAGE
 =====
-        >>> ... register utility ...
 
+    >>> from zope.interface import implements
+    >>> from interfaces import IWkhtmltopdfConfig
+
+    >>> class WkhtmltopdfConfig:
+    ...     """Wkhtmltopdf Config utility
+    ...     """
+    ...     implements(IWkhtmltopdfConfig)
+    ...      paths = {'linux2': '/absolute/path/to/linux/wkhtmltopdf',
+    ...               'darwin': '/absolute/path/to/osx/wkhtmltopdf'}
+
+
+    <utility
+        provides="abstract.wkhtmltopdf.interfaces.IWkhtmltopdfConfig"
+        factory=".WkhtmltopdfConfig"
+      />
 
 
 Zope/Plone integration
