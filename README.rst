@@ -5,8 +5,8 @@ Introduction
 
 This package provides a class to use wkhtmltopdf in python without any trouble (?)
 
-USAGE
-=====
+Configuration
+=============
 
     >>> from zope.interface import implements
     >>> from interfaces import IWkhtmltopdfConfig
