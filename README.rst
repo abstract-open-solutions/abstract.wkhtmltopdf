@@ -5,6 +5,8 @@ Introduction
 
 This package provides a class to use wkhtmltopdf in python without any trouble (?)
 
+
+
 Configuration
 =============
 
@@ -66,8 +68,17 @@ Pyramid integration
     ...     return response
 
 
-install kwhtmltopdf with zc.buildout
+Install kwhtmltopdf with zc.buildout
 ====================================
+
+Dependencies
+-------------
+
+linux:
+
+    * xfonts-scalable
+    * libfontconfig1
+
 
 buildout example configuration ::
 
