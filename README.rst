@@ -91,9 +91,19 @@ buildout example configuration ::
 
     ...
 
+    [instance]
+    environment-vars +=
+        WKHTML2PDF_PATH ${buildout:directory}/parts/${wkhtmltopdf:executable-path}/${wkhtmltopdf:filename}
+    
+    ...
+
     [wkhtmltopdf-linux]
     recipe = hexagonit.recipe.download
     url = http://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-0.10.0_rc2-static-i386.tar.bz2
+    download-only = true
+    filename = wkhtmltopdf
+    executable-path = ${:_buildout_section_name_}
+
 
     [wkhtmltopdf-osx]
     recipe = hexagonit.recipe.download

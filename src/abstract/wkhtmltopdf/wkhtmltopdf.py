@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 import sys
 import subprocess
 import logging
@@ -20,6 +21,9 @@ class PDFRenderer(object):
         self.logger = logging.getLogger("whkthmltopdf")
 
         self.executable = config.paths.get(self._platform)
+        if not self.executable:
+            self.executable = os.environ.get('WKHTML2PDF_PATH')
+
         if not self.executable:
             error = 'Wkhtmltopdf executable not found for this platform'
             raise ConfigurationError(error)
