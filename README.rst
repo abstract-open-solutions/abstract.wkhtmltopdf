@@ -28,6 +28,19 @@ zcml example registration::
         factory=".WkhtmltopdfConfig"
       />
 
+You can also use an environment variable to get this conf, by passing it at runtime::
+
+    WKHTML2PDF_PATH=/usr/bin/wkhtmltopdf bin/instance fg
+
+or by buildout setup::
+
+    [...]
+    
+    [instance]
+    environment-vars =
+        WKHTML2PDF_PATH /usr/bin/wkhtmltopdf
+
+    [...]
 
 
 Zope/Plone integration

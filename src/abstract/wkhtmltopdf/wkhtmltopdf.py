@@ -3,7 +3,9 @@ import os
 import sys
 import subprocess
 import logging
-from zope.component import getUtility
+
+from zope.component import queryUtility
+
 from interfaces import IWkhtmltopdfConfig
 
 
@@ -17,10 +19,12 @@ class PDFRenderer(object):
     executable = ''
 
     def __init__(self):
-        config = getUtility(IWkhtmltopdfConfig)
+        config = queryUtility(IWkhtmltopdfConfig)
         self.logger = logging.getLogger("whkthmltopdf")
 
-        self.executable = config.paths.get(self._platform)
+        if config:
+            self.executable = config.paths.get(self._platform)
+
         if not self.executable:
             self.executable = os.environ.get('WKHTML2PDF_PATH')
 
