@@ -21,7 +21,9 @@ class PDFRenderer(object):
 
         self.executable = config.paths.get(self._platform)
         if not self.executable:
-            error = 'Wkhtmltopdf executable not found for this platform'
+            error = (
+                'Wkhtmltopdf executable not found'
+                ' for this platform - %s' % self._platform)
             raise ConfigurationError(error)
 
     @property
