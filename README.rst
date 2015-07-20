@@ -28,6 +28,27 @@ zcml example registration::
         factory=".WkhtmltopdfConfig"
       />
 
+You can also use an environment variable to get this conf, by passing it at runtime::
+
+    WKHTML2PDF_PATH=/usr/bin/wkhtmltopdf bin/instance fg
+
+or by buildout setup::
+
+    [...]
+
+    [instance]
+    environment-vars =
+        WKHTML2PDF_PATH /usr/bin/wkhtmltopdf
+
+    [...]
+
+
+Default: if none of the above setting is found and one of the default paths is found
+
+    `/usr/bin/wkhtmltopdf`
+    `/usr/local/bin/wkhtmltopdf`
+
+it will be used as a default (and this info will be logged).
 
 
 Zope/Plone integration
@@ -91,9 +112,19 @@ buildout example configuration ::
 
     ...
 
+    [instance]
+    environment-vars +=
+        WKHTML2PDF_PATH ${buildout:directory}/parts/${wkhtmltopdf:executable-path}/${wkhtmltopdf:filename}
+
+    ...
+
     [wkhtmltopdf-linux]
     recipe = hexagonit.recipe.download
     url = http://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-0.10.0_rc2-static-i386.tar.bz2
+    download-only = true
+    filename = wkhtmltopdf
+    executable-path = ${:_buildout_section_name_}
+
 
     [wkhtmltopdf-osx]
     recipe = hexagonit.recipe.download
