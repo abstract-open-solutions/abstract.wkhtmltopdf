@@ -35,12 +35,20 @@ You can also use an environment variable to get this conf, by passing it at runt
 or by buildout setup::
 
     [...]
-    
+
     [instance]
     environment-vars =
         WKHTML2PDF_PATH /usr/bin/wkhtmltopdf
 
     [...]
+
+
+Default: if none of the above setting is found and one of the default paths is found
+
+    `/usr/bin/wkhtmltopdf`
+    `/usr/local/bin/wkhtmltopdf`
+
+it will be used as a default (and this info will be logged).
 
 
 Zope/Plone integration
@@ -107,7 +115,7 @@ buildout example configuration ::
     [instance]
     environment-vars +=
         WKHTML2PDF_PATH ${buildout:directory}/parts/${wkhtmltopdf:executable-path}/${wkhtmltopdf:filename}
-    
+
     ...
 
     [wkhtmltopdf-linux]

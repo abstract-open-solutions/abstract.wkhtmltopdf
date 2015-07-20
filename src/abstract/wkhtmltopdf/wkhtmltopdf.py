@@ -8,6 +8,11 @@ from zope.component import queryUtility
 
 from interfaces import IWkhtmltopdfConfig
 
+DEFAULT_EXE_PATHS = (
+    '/usr/bin/wkhtmltopdf',
+    '/usr/local/bin/wkhtmltopdf',
+)
+
 
 class ConfigurationError(Exception):
     """Whkthmltopdf configuration error
@@ -27,6 +32,15 @@ class PDFRenderer(object):
 
         if not self.executable:
             self.executable = os.environ.get('WKHTML2PDF_PATH')
+
+        if not self.executable:
+            for path in DEFAULT_EXE_PATHS:
+                if os.path.exists(path):
+                    self.executable = path
+                    msg = 'No config utility found, but found %s, using it!' \
+                        % path
+                    self.logger.info(msg)
+                    break
 
         if not self.executable:
             error = 'Wkhtmltopdf executable not found for this platform'
